@@ -30,7 +30,7 @@ async function createAdmin() {
     // VERFICAR SI ADMIN YA EXISTE
     const existingAdmin = await User.findOne({
       where: {
-        correo: "admin@admin.com",
+        correo: process.env.ADMIN_EMAIL,
       },
     });
 
@@ -40,13 +40,13 @@ async function createAdmin() {
     }
 
     // ENCRIPTAR PASSWORD
-    const hashedPassword = await bcrypt.hash("123456", 10);
+    const hashedPassword = await bcrypt.hash(process.env.ADMIN_PASSWORD, 10);
 
     // CREAR ADMIN
     await User.create({
       numeroEmpleado: "0001",
       nombre: "Administrador",
-      correo: "admin@admin.com",
+      correo: process.env.ADMIN_EMAIL,
       password: hashedPassword,
       departamento: "Administración",
       puesto: "Administrador General",
