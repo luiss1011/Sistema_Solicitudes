@@ -12,6 +12,7 @@ const morgan = require("morgan");
 const app = express();
 
 const authRoutes = require("./routes/authRoutes");
+const dashboardRoutes = require("./routes/dashboardRoutes");
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -29,5 +30,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(sessionConfig);
 
 app.use(authRoutes);
+
+app.use(dashboardRoutes);
 
 module.exports = app;

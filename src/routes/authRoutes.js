@@ -2,11 +2,27 @@ const express = require("express");
 
 const router = express.Router();
 
-router.get("/login", (req, res) => {
-  res.render("auth/login", {
-    titulo: "Iniciar sesión",
-    error: null,
-  });
-});
+const authController = require("../controllers/authController");
+
+
+// LOGIN VISTA
+router.get(
+  "/login",
+  authController.showLogin
+);
+
+
+// LOGIN POST
+router.post(
+  "/login",
+  authController.login
+);
+
+
+// LOGOUT
+router.post(
+  "/logout",
+  authController.logout
+);
 
 module.exports = router;

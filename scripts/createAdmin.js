@@ -50,7 +50,7 @@ async function createAdmin() {
       password: hashedPassword,
       departamento: "Administración",
       puesto: "Administrador General",
-      releId: adminRole.id,
+      roleId: adminRole.id,
     });
 
     console.log("Admin creado correctamente");
