@@ -2,8 +2,12 @@ const express = require("express");
 
 const router = express.Router();
 
-router.get("/dashboard", (req, res) => {
-  res.send("Dashboard funcionando");
+const { isAuthenticated } = require("../middleware/authMiddleware");
+
+const { authorizeRoles } = require("../middleware/roleMiddleware");
+
+router.get("/dashboard", isAuthenticated, authorizeRoles("admin"), (req, res) => {
+  res.send(`Dashboard Admin`);
 });
 
 module.exports = router;
