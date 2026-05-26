@@ -6,8 +6,15 @@ const { isAuthenticated } = require("../middleware/authMiddleware");
 
 const { authorizeRoles } = require("../middleware/roleMiddleware");
 
-router.get("/dashboard", isAuthenticated, authorizeRoles("admin"), (req, res) => {
-  res.send(`Dashboard Admin`);
-});
+router.get(
+  "/dashboard",
+  isAuthenticated,
+  authorizeRoles("admin"),
+  (req, res) => {
+    res.render("dashboard/index", {
+      user: req.session.user,
+    });
+  },
+);
 
 module.exports = router;

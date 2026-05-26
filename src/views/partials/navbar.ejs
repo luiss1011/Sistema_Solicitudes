@@ -1,0 +1,11 @@
+<nav class="navbar navbar-dark bg-dark px-4">
+  <span class="navbar-brand"> Sistema de Solicitudes </span>
+
+  <div class="d-flex align-items-center text-white gap-3">
+    <span> <%= user.nombre %> </span>
+
+    <form action="/logout" method="POST">
+      <button class="btn btn-outline-light btn-sm">Cerrar sesión</button>
+    </form>
+  </div>
+</nav>
