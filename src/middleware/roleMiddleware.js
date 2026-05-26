@@ -1,12 +1,15 @@
 exports.authorizeRoles = (...roles) => {
-    return (req, res, next) => {
+  return (req, res, next) => {
+    if (!req.session.user) {
+      return res.redirect("/login");
+    }
 
-        const userRole = req.session.user.role;
+    const userRole = req.session.user.role;
 
-        if (!roles.includes(userRole)) {
-            return res.send("Acceso denegado");
-        }
+    if (!roles.includes(userRole)) {
+      return res.status(403).render("errors/403");
+    }
 
-        next();
-    };
+    next();
+  };
 };
