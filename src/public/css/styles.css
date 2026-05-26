@@ -10,3 +10,9 @@ body {
   background-color: #e9ecef;
   border-radius: 5px;
 }
+
+.nav-link.active {
+  background-color: #212529;
+  color: white !important;
+  border-radius: 5px;
+}

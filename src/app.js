@@ -13,6 +13,7 @@ const app = express();
 
 const authRoutes = require("./routes/authRoutes");
 const dashboardRoutes = require("./routes/dashboardRoutes");
+const solicitudRoutes = require("./routes/solicitudRoutes");
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -29,8 +30,15 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use(sessionConfig);
 
+app.use((req, res, next) => {
+  res.locals.user = req.session.user || null;
+  next();
+});
+
 app.use(authRoutes);
 
 app.use(dashboardRoutes);
+
+app.use(solicitudRoutes);
 
 module.exports = app;

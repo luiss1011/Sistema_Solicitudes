@@ -1,0 +1,108 @@
+<%- include('../partials/header') %>
+
+<%- include('../partials/navbar', { user }) %>
+
+<div class="d-flex">
+
+  <%- include('../partials/sidebar') %>
+
+  <div class="container-fluid p-4">
+
+    <h2 class="mb-4">
+      Nueva Solicitud
+    </h2>
+
+    <div class="card p-4 shadow-sm">
+
+      <form action="/solicitudes" method="POST">
+
+        <div class="mb-3">
+
+          <label class="form-label">
+            Título
+          </label>
+
+          <input
+            type="text"
+            name="titulo"
+            class="form-control"
+            required
+          >
+
+        </div>
+
+        <div class="mb-3">
+
+          <label class="form-label">
+            Descripción
+          </label>
+
+          <textarea
+            name="descripcion"
+            class="form-control"
+            rows="4"
+            required
+          ></textarea>
+
+        </div>
+
+        <div class="mb-3">
+
+          <label class="form-label">
+            Departamento
+          </label>
+
+          <select
+            name="departamento"
+            class="form-select"
+            required
+          >
+
+            <option value="">
+              Selecciona
+            </option>
+
+            <option value="RH">
+              RH
+            </option>
+
+            <option value="Sistemas">
+              Sistemas
+            </option>
+
+            <option value="Servicios Generales">
+              Servicios Generales
+            </option>
+
+          </select>
+
+        </div>
+
+        <div class="mb-3">
+
+          <label class="form-label">
+            Categoría
+          </label>
+
+          <input
+            type="text"
+            name="categoria"
+            class="form-control"
+            required
+          >
+
+        </div>
+
+        <button class="btn btn-dark">
+          Crear Solicitud
+        </button>
+
+      </form>
+
+    </div>
+
+  </div>
+
+</div>
+
+<%- include('../partials/footer') %>

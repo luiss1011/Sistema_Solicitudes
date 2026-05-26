@@ -1,13 +1,30 @@
+<!-- sidebar.ejs -->
 <div class="bg-light border-end vh-100 p-3" style="width: 250px">
   <h5 class="mb-4">Menú</h5>
-
   <ul class="nav flex-column">
     <li class="nav-item mb-2">
-      <a href="/dashboard" class="nav-link"> Dashboard </a>
+      <a
+        href="/dashboard"
+        class="nav-link <%= currentPage === 'dashboard' ? 'active' : '' %>"
+      >
+        Dashboard
+      </a>
     </li>
-
     <li class="nav-item mb-2">
-      <a href="/solicitudes" class="nav-link"> Solicitudes </a>
+      <a
+        href="/solicitudes"
+        class="nav-link <%= currentPage === 'solicitudes' ? 'active' : '' %>"
+      >
+        Solicitudes
+      </a>
+    </li>
+    <li class="nav-item mb-2">
+      <a
+        href="/solicitudes/crear"
+        class="nav-link <%= currentPage === 'crearSolicitud' ? 'active' : '' %>"
+      >
+        Nueva Solicitud
+      </a>
     </li>
   </ul>
 </div>
