@@ -14,6 +14,26 @@
 
     <div class="card p-4 shadow-sm">
 
+<% if (errors && errors.length > 0) { %>
+
+  <div class="alert alert-danger">
+
+    <ul class="mb-0">
+
+      <% errors.forEach(error => { %>
+
+        <li>
+          <%= error.msg %>
+        </li>
+
+      <% }) %>
+
+    </ul>
+
+  </div>
+
+<% } %>
+
       <form action="/solicitudes" method="POST">
 
         <div class="mb-3">
@@ -26,7 +46,7 @@
             type="text"
             name="titulo"
             class="form-control"
-            required
+            value="<%= old?.titulo || '' %>"
           >
 
         </div>
@@ -38,11 +58,10 @@
           </label>
 
           <textarea
-            name="descripcion"
-            class="form-control"
-            rows="4"
-            required
-          ></textarea>
+  name="descripcion"
+  class="form-control"
+  rows="4"
+><%= old?.descripcion || '' %></textarea>
 
         </div>
 
@@ -53,24 +72,24 @@
           </label>
 
           <select
-            name="departamento"
-            class="form-select"
-            required
-          >
+  name="departamento"
+  class="form-select"
+>
 
             <option value="">
               Selecciona
             </option>
 
-            <option value="RH">
+            <option value="RH"
+  <%= old?.departamento === 'RH' ? 'selected' : '' %>>
               RH
             </option>
 
-            <option value="Sistemas">
+            <option value="Sistemas" <%= old?.departamento === 'Sistemas' ? 'selected' : '' %>>
               Sistemas
             </option>
 
-            <option value="Servicios Generales">
+            <option value="Servicios Generales" <%= old?.departamento === 'Servicios Generales' ? 'selected' : '' %>>
               Servicios Generales
             </option>
 
@@ -85,11 +104,11 @@
           </label>
 
           <input
-            type="text"
-            name="categoria"
-            class="form-control"
-            required
-          >
+  type="text"
+  name="categoria"
+  class="form-control"
+  value="<%= old?.categoria || '' %>"
+>
 
         </div>
 
