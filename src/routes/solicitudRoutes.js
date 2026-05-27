@@ -36,4 +36,12 @@ router.get(
   solicitudController.misSolicitudes,
 );
 
+router.get(
+  "/panel-solicitudes",
+
+  isAuthenticated,
+
+  solicitudController.panelSolicitudes,
+);
+
 module.exports = router;

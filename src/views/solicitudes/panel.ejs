@@ -1,0 +1,79 @@
+<%- include('../partials/header') %>
+
+<%- include('../partials/navbar', { user }) %>
+
+<div class="d-flex">
+
+  <%- include('../partials/sidebar') %>
+
+  <div class="container-fluid p-4">
+
+    <h2 class="mb-4">
+      Panel de Solicitudes
+    </h2>
+
+    <div class="card shadow-sm p-4">
+
+      <table class="table table-hover">
+
+        <thead>
+
+          <tr>
+
+            <th>Título</th>
+
+            <th>Departamento</th>
+
+            <th>Estado</th>
+
+            <th>Acciones</th>
+
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          <% solicitudes.forEach(solicitud => { %>
+
+            <tr>
+
+              <td>
+                <%= solicitud.titulo %>
+              </td>
+
+              <td>
+                <%= solicitud.departamento %>
+              </td>
+
+              <td>
+                <%= solicitud.estado %>
+              </td>
+
+              <td>
+
+                <button class="btn btn-success btn-sm">
+                  Aprobar
+                </button>
+
+                <button class="btn btn-danger btn-sm">
+                  Rechazar
+                </button>
+
+              </td>
+
+            </tr>
+
+          <% }) %>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+</div>
+
+<%- include('../partials/footer') %>

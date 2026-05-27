@@ -1,4 +1,22 @@
-<!-- sidebar.ejs -->
+<% if (
+  user.role === "gerente_rh" ||
+  user.role === "gerente_sistemas" ||
+  user.role === "gerente_servicios_generales"
+) { %>
+
+  <li class="nav-item mb-2">
+
+    <a
+      href="/panel-solicitudes"
+      class="nav-link <%= currentPage === 'panelSolicitudes' ? 'active' : '' %>"
+    >
+      Panel Solicitudes
+    </a>
+
+  </li>
+
+<% } %>
+
 <div class="bg-light border-end vh-100 p-3" style="width: 250px">
   <h5 class="mb-4">Menú</h5>
   <ul class="nav flex-column">

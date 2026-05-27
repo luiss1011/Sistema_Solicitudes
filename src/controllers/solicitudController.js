@@ -1,5 +1,6 @@
 const Solicitud = require("../models/Solicitud");
 const { validationResult } = require("express-validator");
+const { ROLE_DEPARTAMENTO } = require("../config/constants");
 
 // MOSTRAR FORMULARIO
 exports.showCreateForm = (req, res) => {
@@ -61,5 +62,33 @@ exports.misSolicitudes = async (req, res) => {
   } catch (error) {
     console.error(error);
     res.send("Error al obtener solicitudes");
+  }
+};
+
+exports.panelSolicitudes = async (req, res) => {
+  try {
+    const role = req.session.user.role;
+    const departamento = ROLE_DEPARTAMENTO[role];
+
+    // Si el rol no tiene departamento asignado, acceso denegado
+    if (!departamento) {
+      return res.status(403).render("errors/403", {
+        user: req.session.user,
+      });
+    }
+
+    const solicitudes = await Solicitud.findAll({
+      where: { departamento },
+      order: [["createdAt", "DESC"]],
+    });
+
+    res.render("solicitudes/panel", {
+      user: req.session.user,
+      solicitudes,
+      currentPage: "panelSolicitudes",
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).render("errors/500", { user: req.session.user });
   }
 };
