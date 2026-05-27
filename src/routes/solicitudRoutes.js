@@ -15,4 +15,19 @@ router.get(
   solicitudController.showCreateForm,
 );
 
+router.post(
+  "/solicitudes",
+  isAuthenticated,
+
+  solicitudController.createSolicitud,
+);
+
+router.get(
+  "/mis-solicitudes",
+
+  isAuthenticated,
+
+  solicitudController.misSolicitudes,
+);
+
 module.exports = router;
