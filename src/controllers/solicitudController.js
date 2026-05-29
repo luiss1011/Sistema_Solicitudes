@@ -1,6 +1,7 @@
 const Solicitud = require("../models/Solicitud");
 const { validationResult } = require("express-validator");
 const { ROLE_DEPARTAMENTO } = require("../config/constants");
+const { getDepartmentByRole } = require("../helpers/departmentHelper");
 
 // MOSTRAR FORMULARIO
 exports.showCreateForm = (req, res) => {
@@ -90,5 +91,69 @@ exports.panelSolicitudes = async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).render("errors/500", { user: req.session.user });
+  }
+};
+
+exports.aprobarSolicitud = async (req, res) => {
+  try {
+    const solicitud = await Solicitud.findByPk(req.params.id);
+
+    if (solicitud.estado !== "pendiente") {
+      return res.send("La solicitud ya fue procesada");
+    }
+
+    if (!solicitud) {
+      return res.send("Solicitud no encontrada");
+    }
+
+    // OBTENER DEPARTAMENTO GERENTE
+    const departamentoGerente = getDepartmentByRole(req.session.user.role);
+
+    // VALIDAR PERMISO
+    if (solicitud.departamento !== departamentoGerente) {
+      return res.send("No autorizado");
+    }
+
+    solicitud.estado = "aprobada";
+
+    await solicitud.save();
+
+    res.redirect("/panel-solicitudes");
+  } catch (error) {
+    console.error(error);
+
+    res.send("Error al aprobar solicitud");
+  }
+};
+
+exports.rechazarSolicitud = async (req, res) => {
+  try {
+    const solicitud = await Solicitud.findByPk(req.params.id);
+
+    if (solicitud.estado !== "pendiente") {
+      return res.send("La solicitud ya fue procesada");
+    }
+
+    if (!solicitud) {
+      return res.send("Solicitud no encontrada");
+    }
+
+    // OBTENER DEPARTAMENTO GERENTE
+    const departamentoGerente = getDepartmentByRole(req.session.user.role);
+
+    // VALIDAR PERMISO
+    if (solicitud.departamento !== departamentoGerente) {
+      return res.send("No autorizado");
+    }
+
+    solicitud.estado = "rechazada";
+
+    await solicitud.save();
+
+    res.redirect("/panel-solicitudes");
+  } catch (error) {
+    console.error(error);
+
+    res.send("Error al aprobar solicitud");
   }
 };

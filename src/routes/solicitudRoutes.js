@@ -44,4 +44,20 @@ router.get(
   solicitudController.panelSolicitudes,
 );
 
+router.post(
+  "/solicitudes/:id/aprobar",
+
+  isAuthenticated,
+
+  solicitudController.aprobarSolicitud,
+);
+
+router.post(
+  "/solicitudes/:id/rechazar",
+
+  isAuthenticated,
+
+  solicitudController.rechazarSolicitud,
+);
+
 module.exports = router;

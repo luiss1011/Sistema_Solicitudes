@@ -47,20 +47,70 @@
               </td>
 
               <td>
-                <%= solicitud.estado %>
-              </td>
+
+  <% if (solicitud.estado === "pendiente") { %>
+
+    <span class="badge bg-warning">
+
+      Pendiente
+
+    </span>
+
+  <% } %>
+
+  <% if (solicitud.estado === "aprobada") { %>
+
+    <span class="badge bg-success">
+
+      Aprobada
+
+    </span>
+
+  <% } %>
+
+  <% if (solicitud.estado === "rechazada") { %>
+
+    <span class="badge bg-danger">
+
+      Rechazada
+
+    </span>
+
+  <% } %>
+
+</td>>
 
               <td>
 
-                <button class="btn btn-success btn-sm">
-                  Aprobar
-                </button>
+  <form
+    action="/solicitudes/<%= solicitud.id %>/aprobar"
+    method="POST"
+    class="d-inline"
+  >
 
-                <button class="btn btn-danger btn-sm">
-                  Rechazar
-                </button>
+    <button class="btn btn-success btn-sm">
 
-              </td>
+      Aprobar
+
+    </button>
+
+  </form>
+
+  <form
+    action="/solicitudes/<%= solicitud.id %>/rechazar"
+    method="POST"
+    class="d-inline"
+  >
+
+    <button class="btn btn-danger btn-sm">
+
+      Rechazar
+
+    </button>
+
+  </form>
+
+</td>
 
             </tr>
 
