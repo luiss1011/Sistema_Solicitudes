@@ -14,6 +14,7 @@ const app = express();
 const authRoutes = require("./routes/authRoutes");
 const dashboardRoutes = require("./routes/dashboardRoutes");
 const solicitudRoutes = require("./routes/solicitudRoutes");
+const adminRoutes = require("./routes/adminRoutes");
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -40,5 +41,7 @@ app.use(authRoutes);
 app.use(dashboardRoutes);
 
 app.use(solicitudRoutes);
+
+app.use(adminRoutes);
 
 module.exports = app;

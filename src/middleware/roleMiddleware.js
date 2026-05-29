@@ -1,5 +1,13 @@
 exports.authorizeRoles = (...roles) => {
   return (req, res, next) => {
+
+    console.log("Roles permitidos:", roles);
+
+    console.log(
+      "Rol usuario:",
+      req.session.user.role
+    );
+
     if (!req.session.user) {
       return res.redirect("/login");
     }

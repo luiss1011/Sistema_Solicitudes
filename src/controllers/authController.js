@@ -47,6 +47,7 @@ exports.login = async (req, res) => {
       nombre: user.nombre,
       correo: user.correo,
       role: user.Role.nombre,
+      roleId: user.roleId,
     };
 
     res.redirect("/dashboard");

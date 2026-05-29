@@ -44,6 +44,11 @@ const User = sequelize.define("User", {
     type: DataTypes.BOOLEAN,
     defaultValue: true,
   },
+
+  roleId: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+  },
 });
 
 module.exports = User;

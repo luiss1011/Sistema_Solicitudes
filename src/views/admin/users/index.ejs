@@ -1,0 +1,80 @@
+<%- include('../../partials/header') %>
+
+<%- include('../../partials/navbar', { user }) %>
+
+<div class="d-flex">
+
+  <%- include('../../partials/sidebar') %>
+
+  <div class="container-fluid p-4">
+
+    <div class="d-flex
+                justify-content-between
+                align-items-center
+                mb-4">
+
+      <h2>
+        Usuarios
+      </h2>
+
+      <a
+        href="/admin/usuarios/crear"
+        class="btn btn-dark"
+      >
+        Nuevo Usuario
+      </a>
+
+    </div>
+
+    <div class="card shadow-sm p-4">
+
+      <table class="table table-hover">
+
+        <thead>
+
+          <tr>
+
+            <th>Nombre</th>
+
+            <th>Correo</th>
+
+            <th>Rol</th>
+
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          <% users.forEach(userItem => { %>
+
+            <tr>
+
+              <td>
+                <%= userItem.nombre %>
+              </td>
+
+              <td>
+                <%= userItem.correo %>
+              </td>
+          
+              <td>
+                <%= userItem.roleId %>
+              </td>
+              <% }) %>
+
+            </tr>
+
+          
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+</div>
+
+<%- include('../../partials/footer') %>
